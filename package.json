@@ -1,0 +1,13 @@
+{
+  "name": "reflexcam-citas",
+  "version": "1.0.0",
+  "description": "Estudio de fotografia artistica ReflexCam y sistema de reserva de citas premium.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}

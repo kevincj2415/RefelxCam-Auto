@@ -1393,4 +1393,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${formattedHour}:${min < 10 ? '0' + min : min} ${ampm}`;
     }
 
+    // --- CONTROLADOR DE MENÚ HAMBURGUESA RESPONSIVO ---
+    const hamburgerBtn = document.getElementById('hamburger-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            const isActive = hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            hamburgerBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            playTransitionClick();
+        });
+
+        // Cerrar menú al hacer clic en un link de navegación
+        DOM.navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Cerrar al hacer clic fuera del menú en pantallas móviles
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+                if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    hamburgerBtn.setAttribute('aria-expanded', 'false');
+                    playTransitionClick();
+                }
+            }
+        });
+    }
+
 });
